@@ -3,6 +3,10 @@ import Router from 'vue-router'
 // 路由懒加载
 const Login = () => import('./components/Login.vue')
 const Home = () => import('./components/Home.vue')
+const Welcome = () => import('./components/Welcome.vue')
+const Users = () => import('./components/users/Users.vue')
+const Roles = () => import('./components/rights/Roles.vue')
+
 
 Vue.use(Router)
 
@@ -17,7 +21,22 @@ const router =  new Router({
       component: Login
     },{
       path: '/home',  
-      component: Home
+      component: Home,
+      redirect: '/welcome',
+      children:[
+        {
+          path: '/welcome',
+          component: Welcome
+        },
+        {
+          path: '/users',
+          component: Users
+        },
+        {
+          path: '/roles',
+          component: Roles
+        }
+      ]
     }
   ],
   mode: 'history'
@@ -25,7 +44,6 @@ const router =  new Router({
 //为路由对象,添加beforeEach导航守卫
 router.beforeEach((to, from, next) => {
   //如果用户访问的是登入页面直接放行
-  console.log(to)
   if(to.path === '/login') return next()
   //从sessionStorage中获取到保存的token值
   const tokenStr = window.sessionStorage.getItem('token')
