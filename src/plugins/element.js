@@ -10,7 +10,8 @@ import {
   Switch,
   Pagination,
   Tooltip,
-  Dialog
+  Dialog,
+  Select,Option
 } from 'element-ui'
 // 登入页面所需组件
 Vue.use(Button)
@@ -41,3 +42,5 @@ Vue.use(Switch)
 Vue.use(Pagination)
 Vue.use(Tooltip)
 Vue.use(Dialog)
+Vue.use(Select)
+Vue.use(Option)

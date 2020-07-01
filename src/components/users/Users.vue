@@ -18,7 +18,7 @@
           </div>
         </el-col>
         <el-col :span="4">
-          <user-add @getUsersList="getUsersList"></user-add>
+          <user-add :checkMethods="checkMethods" @getUsersList="getUsersList"></user-add>
         </el-col>
       </el-row>
       <!-- 用户数据列表展示区域 -->
@@ -37,19 +37,13 @@
           </template>
         </el-table-column>
         <el-table-column label="操作">
-          <template>
+          <template v-slot="scope">
             <!-- 修改 -->
-            <el-tooltip  effect="dark" content="修改" placement="top" :enterable="false">
-              <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>
-            </el-tooltip>
+            <user-update class="btn_inline" :checkMethods="checkMethods" :id="scope.row.id" @updateTwo="getUsersList"></user-update>
             <!-- 删除 -->
-            <el-tooltip  effect="dark" content="删除" placement="top" :enterable="false">
-              <el-button type="danger" icon="el-icon-delete" size="mini"></el-button>
-            </el-tooltip>
+            <user-del class="btn_inline" :id="scope.row.id" @updateDel="getUsersList"></user-del>
             <!-- 角色分配 -->
-            <el-tooltip  effect="dark" content="角色分配" placement="top" :enterable="false">
-              <el-button type="warning" icon="el-icon-setting" size="mini"></el-button>
-            </el-tooltip>
+            <user-name class="btn_inline" :user="scope.row" @updateName="getUsersList"></user-name>
           </template>
         </el-table-column>
       </el-table>
@@ -70,6 +64,9 @@
 <script>
 import { request } from '@/network/request'
 const UserAdd = () => import('./UserAdd')
+const UserDel = () => import('./UserDel')
+const UserUpdate = () => import('./UserUpdate')
+const UserName = () => import('./UserName')
 
 export default {
   name: 'Users',
@@ -84,7 +81,27 @@ export default {
       },
       usersList: [],
       // 列表总条数
-      total: 0
+      total: 0,
+      checkMethods: {
+        // 自定义邮箱规则
+        checkEmail(rule, value, callback) {
+          const regEmail = /^\w+@\w+(\.\w+)+$/
+          if (regEmail.test(value)) {
+            // 合法邮箱
+            return callback()
+          }
+          callback(new Error('请输入合法邮箱'))
+        },
+        // 自定义手机号规则
+        checkMobile(rule, value, callback) {
+          const regMobile = /^1[34578]\d{9}$/
+          if (regMobile.test(value)) {
+            return callback()
+          }
+          // 返回一个错误提示
+          callback(new Error('请输入合法的手机号码'))
+        }
+      }
     }
   },
   created() {
@@ -138,7 +155,10 @@ export default {
     }
   },
   components: {
-    UserAdd
+    UserAdd,
+    UserDel,
+    UserUpdate,
+    UserName
   }
 }
 </script>
@@ -148,5 +168,8 @@ export default {
 .el-table,
 .el-row{
   margin-bottom: 15px;
+}
+.btn_inline{
+  display: inline-block;
 }
 </style>

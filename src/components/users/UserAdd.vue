@@ -38,25 +38,10 @@ import { request } from '@/network/request'
 
 export default {
   name: 'UserAdd',
+  props: {
+    checkMethods: Object
+  },
   data() {
-    // 自定义邮箱规则
-    var checkEmail = (rule, value, callback) => {
-      const regEmail = /^\w+@\w+(\.\w+)+$/
-      if (regEmail.test(value)) {
-        // 合法邮箱
-        return callback()
-      }
-      callback(new Error('请输入合法邮箱'))
-    }
-    // 自定义手机号规则
-    var checkMobile = (rule, value, callback) => {
-      const regMobile = /^1[34578]\d{9}$/
-      if (regMobile.test(value)) {
-        return callback()
-      }
-      // 返回一个错误提示
-      callback(new Error('请输入合法的手机号码'))
-    }
     return {
       addForm: {
         username: '',
@@ -77,11 +62,11 @@ export default {
         ],
         email: [
           { required: true, message: '请输入邮箱', trigger: 'blur' },
-          { validator: checkEmail, trigger: 'blur' }
+          { validator: this.checkMethods.checkEmail, trigger: 'blur' }
         ],
         mobile: [
           { required: true, message: '请输入手机号', trigger: 'blur' },
-          { validator: checkMobile, trigger: 'blur' }
+          { validator: this.checkMethods.checkMobile, trigger: 'blur' }
         ]
       }
     }
@@ -106,7 +91,9 @@ export default {
         } else {
           // 隐藏对话框
           this.dialogVisible = false
-           this.$message.success('添加用户成功')
+          // 重置表单
+          this.$refs.addFormRef.resetFields()
+          this.$message.success('添加用户成功')
         }
         // 自定义事件调用父组件的getUsersList方法刷新用户列表
         this.$emit('getUsersList')
