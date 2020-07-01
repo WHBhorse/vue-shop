@@ -63,10 +63,10 @@
 
 <script>
 import { request } from '@/network/request'
-const UserAdd = () => import('./UserAdd')
-const UserDel = () => import('./UserDel')
-const UserUpdate = () => import('./UserUpdate')
-const UserName = () => import('./UserName')
+const UserAdd = () => import('./subComponents/UserAdd.vue')
+const UserDel = () => import('./subComponents/UserDel')
+const UserUpdate = () => import('./subComponents/UserUpdate')
+const UserName = () => import('./subComponents/UserName')
 
 export default {
   name: 'Users',
