@@ -11,7 +11,10 @@ import {
   Pagination,
   Tooltip,
   Dialog,
-  Select,Option
+  Select,Option,
+  Tag,
+  MessageBox,
+  Tree
 } from 'element-ui'
 // 登入页面所需组件
 Vue.use(Button)
@@ -27,13 +30,10 @@ Vue.use(Main)
 Vue.use(Menu)
 Vue.use(Submenu)
 Vue.use(MenuItem)
-// 将弹框组件全局挂在到VUe原形实例
-Vue.prototype.$message = Message
 // 面包屑组件
 Vue.use(Breadcrumb)
 Vue.use(BreadcrumbItem)
 Vue.use(Card)
-
 Vue.use(Row)
 Vue.use(Col)
 Vue.use(Table)
@@ -44,3 +44,9 @@ Vue.use(Tooltip)
 Vue.use(Dialog)
 Vue.use(Select)
 Vue.use(Option)
+Vue.use(Tag)
+Vue.use(Tree)
+
+// 将弹框组件全局挂在到VUe原形实例
+Vue.prototype.$message = Message
+Vue.prototype.$confirm = MessageBox.confirm

@@ -169,7 +169,4 @@ export default {
 .el-row{
   margin-bottom: 15px;
 }
-.btn_inline{
-  display: inline-block;
-}
 </style>

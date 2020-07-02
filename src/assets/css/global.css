@@ -2,8 +2,15 @@
   全局样式表
 */
 
-html,body,#app{
+html,
+body,
+#app{
   height: 100%;
   padding: 0;
   margin: 0;
+  min-width: 1374px;
+}
+
+.btn_inline{
+  display: inline-block;
 }
