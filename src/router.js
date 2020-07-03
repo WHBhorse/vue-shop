@@ -7,6 +7,9 @@ const Welcome = () => import('./components/Welcome.vue')
 const Users = () => import('./components/users/Users.vue')
 const Roles = () => import('./components/power/Roles.vue')
 const Rights = () => import('./components/power/Rights.vue')
+const Goods = ()  => import('./components/goods/Goods.vue')
+const Params = () => import('./components/goods/Params.vue')
+const Categories = () => import('./components/goods/Categories.vue')
 Vue.use(Router)
 
 const router =  new Router({
@@ -23,22 +26,13 @@ const router =  new Router({
       component: Home,
       redirect: '/welcome',
       children:[
-        {
-          path: '/welcome',
-          component: Welcome
-        },
-        {
-          path: '/users',
-          component: Users
-        },
-        {
-          path: '/roles',
-          component: Roles
-        },
-        {
-          path: '/rights',
-          component: Rights
-        }
+        { path: '/welcome', component: Welcome },
+        { path: '/users', component: Users },
+        { path: '/roles', component: Roles },
+        { path: '/rights', component: Rights },
+        { path: '/goods', component: Goods },
+        { path: '/params', component: Params },
+        { path: '/categories', component: Categories }
       ]
     }
   ],
