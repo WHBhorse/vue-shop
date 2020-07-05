@@ -7,6 +7,17 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './assets/css/global.css'
 // 导入字体图标
 import './assets/fonts/iconfont.css'
+// 导入富文本编辑器
+import VueQuillEditor from 'vue-quill-editor'
+// 导入富文本编辑器样式
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+// 全局注册富文本编辑器
+Vue.use(VueQuillEditor)
+// 导入并注册vue-table-with-tree-grid组件
+import ZkTable from 'vue-table-with-tree-grid'
+Vue.use(ZkTable)
 
 Vue.config.productionTip = false
 

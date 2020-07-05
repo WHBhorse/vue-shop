@@ -14,3 +14,20 @@ body,
 .btn_inline{
   display: inline-block;
 }
+
+.el-step__title{
+  font-size: 13px;
+}
+
+.ql-editor{
+  min-height: 300px;
+}
+
+.upload-demo{
+  margin-bottom: 15px;
+}
+
+.zk-table__cell-inner{
+  display: flex;
+  align-items: center;
+}

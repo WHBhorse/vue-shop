@@ -158,4 +158,7 @@ export default {
 .el-submenu__title span{
   margin-left: 15px;
 }
+.el-button{
+  margin: 0;
+}
 </style>

@@ -10,6 +10,7 @@ const Rights = () => import('./components/power/Rights.vue')
 const Goods = ()  => import('./components/goods/Goods.vue')
 const Params = () => import('./components/goods/Params.vue')
 const Categories = () => import('./components/goods/Categories.vue')
+const GoodsAdd = () => import('./components/goods/subComponents/GoodsAdd.vue')
 Vue.use(Router)
 
 const router =  new Router({
@@ -30,9 +31,10 @@ const router =  new Router({
         { path: '/users', component: Users },
         { path: '/roles', component: Roles },
         { path: '/rights', component: Rights },
-        { path: '/goods', component: Goods },
         { path: '/params', component: Params },
-        { path: '/categories', component: Categories }
+        { path: '/categories', component: Categories },
+        { path: '/goods', component: Goods },
+        { path: '/goods/add', component: GoodsAdd }
       ]
     }
   ],

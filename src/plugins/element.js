@@ -14,7 +14,14 @@ import {
   Select,Option,
   Tag,
   MessageBox,
-  Tree
+  Tree,
+  Alert,
+  Steps,Step,
+  Tabs,TabPane,
+  Cascader,
+  CheckboxGroup,
+  Checkbox,
+  Upload
 } from 'element-ui'
 // 登入页面所需组件
 Vue.use(Button)
@@ -46,7 +53,15 @@ Vue.use(Select)
 Vue.use(Option)
 Vue.use(Tag)
 Vue.use(Tree)
-
+Vue.use(Alert)
+Vue.use(Steps)
+Vue.use(Step)
+Vue.use(Tabs)
+Vue.use(TabPane)
+Vue.use(Cascader)
+Vue.use(CheckboxGroup)
+Vue.use(Checkbox)
+Vue.use(Upload)
 // 将弹框组件全局挂在到VUe原形实例
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm
