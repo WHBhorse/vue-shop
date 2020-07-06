@@ -200,18 +200,21 @@ export default {
       return result
     },
     editPut() {
-      request({
+      this.$refs.editFormRef.validate((valid) => {
+        if(!valid) return false
+        request({
         rul: `goods/${this.goodsId}`,
-        method: 'put',
-        data: this.editForm
-      }).then(res => {
-        if(res.meta.status != 201){
-          return this.$message.error(res.meta.msg)
-        }
-        this.dialogVisible = false
-        return this.$message.success(res.meta.msg)
-      }).catch(error => {
-        console.log(error)
+          method: 'put',
+          data: this.editForm
+        }).then(res => {
+          if(res.meta.status != 201){
+            return this.$message.error(res.meta.msg)
+          }
+          this.dialogVisible = false
+          return this.$message.success(res.meta.msg)
+        }).catch(error => {
+          console.log(error)
+        })
       })
     }
   }

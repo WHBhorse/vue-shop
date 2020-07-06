@@ -21,18 +21,18 @@
         show-index
         border>
         <!-- 是否有效 -->
-        <template slot="isok" scope="scope">
+        <template slot="isok" slot-scope="scope">
           <i class="el-icon-error" style="color: red" v-if="scope.row.cat_deleted"></i>
           <i class="el-icon-success" style="color: lightgreen" v-else></i>
         </template>
         <!-- 排序 -->
-        <template slot="order" scope="scope">
+        <template slot="order" slot-scope="scope">
           <el-tag size="mini" v-if="scope.row.cat_level === 0">一级</el-tag>
           <el-tag type="success" size="mini" v-if="scope.row.cat_level === 1">二级</el-tag>
           <el-tag type="warning" size="mini" v-if="scope.row.cat_level === 2">三级</el-tag>
         </template>
         <!-- 操作 -->
-        <template slot="opt" scope="scope">
+        <template slot="opt" slot-scope="scope">
           <!-- 修改 -->
           <edit-cate :cateObj="scope.row" @editGetCateList="getCateList"></edit-cate>
           <!-- 删除 -->

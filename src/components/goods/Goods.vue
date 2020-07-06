@@ -134,19 +134,6 @@ export default {
   created() {
     this.getGoodsList()
   },
-  filters: {
-    // 处理时间格式
-    timeHandler(time) {
-      const date = new Date(time)
-      const year = date.getFullYear()
-      const month = date.getMonth()+1
-      const day = date.getDay()+1
-      const hours = date.getHours()
-      const minutes = date.getMinutes()
-      const seconds = date.getSeconds()
-      return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
-    }
-  },
   components: {
     GoodsEdit
   }

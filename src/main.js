@@ -19,6 +19,18 @@ Vue.use(VueQuillEditor)
 import ZkTable from 'vue-table-with-tree-grid'
 Vue.use(ZkTable)
 
+// 全局过滤器
+Vue.filter('timeHandler', (time) => {
+  const date = new Date(time)
+  const year = date.getFullYear()
+  const month = date.getMonth()+1
+  const day = date.getDay()+1
+  const hours = date.getHours()
+  const minutes = date.getMinutes()
+  const seconds = date.getSeconds()
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
+})
+
 Vue.config.productionTip = false
 
 new Vue({

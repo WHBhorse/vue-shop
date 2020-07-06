@@ -89,7 +89,7 @@ export default {
         return false
       })
       if(res && res.meta.status != 200){
-        return this.$message.error('更新角色失败')
+        return this.$message.error(res.meta.msg)
       } else {
         this.$emit('updateName')
         // 隐藏弹窗

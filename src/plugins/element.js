@@ -21,7 +21,9 @@ import {
   Cascader,
   CheckboxGroup,
   Checkbox,
-  Upload
+  Upload,
+  Timeline,
+  TimelineItem
 } from 'element-ui'
 // 登入页面所需组件
 Vue.use(Button)
@@ -62,6 +64,8 @@ Vue.use(Cascader)
 Vue.use(CheckboxGroup)
 Vue.use(Checkbox)
 Vue.use(Upload)
+Vue.use(Timeline)
+Vue.use(TimelineItem)
 // 将弹框组件全局挂在到VUe原形实例
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm
