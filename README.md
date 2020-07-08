@@ -1,5 +1,5 @@
 
-##  电商后台管理系统(前端项目）  [预览](http://huangzun.top:8888/)
+##  电商后台管理系统(前端项目）  [预览](http://whbhorse.cn:3000)
 ### 后端API接口源码  [下载](https://gitee.com/wBekvam/vueShop-api-server.git).  [接口API](./api接口文档.md)
 
 ### 功能
@@ -321,8 +321,8 @@ const express = require('express')
 const app = express()
 
 app.use(express.static('./dist'))
-app.listen(80, () => {
-    console.log('server runing at http://127.0.0.1')
+app.listen(3000, () => {
+    console.log('server runing at http://127.0.0.1:3000')
 })
 // 5. node app.js启动项目
 ```

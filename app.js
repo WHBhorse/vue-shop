@@ -5,6 +5,6 @@ const compression = require('compression')
 // 3.启用中间件
 app.use(compression())
 app.use(express.static('./dist'))
-app.listen(80, () => {
-    console.log('server runing at http://127.0.0.1')
+app.listen(3000, () => {
+    console.log('server runing at http://127.0.0.1:3000')
 })
