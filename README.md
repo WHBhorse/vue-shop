@@ -1,5 +1,5 @@
 
-##  电商后台管理系统(前端项目）  [预览](http://whbhorse.cn:3000)
+##  电商后台管理系统(前端项目）  [预览](http://www.whbhorse.cn:3000)
 ### 后端API接口源码  [下载](https://gitee.com/wBekvam/vueShop-api-server.git).  [接口API](./api接口文档.md)
 
 ### 功能
@@ -252,8 +252,6 @@ axios.interceptors.request.use(config => {
 <script src="https://cdn.bootcss.com/vue-router/3.1.3/vue-router.min.js"></script>
 
 <script src="https://cdn.bootcss.com/axios/0.19.0/axios.min.js"></script>
-
-<script src="https://cdn.bootcss.com/lodash.js/4.17.15/lodash.min.js"></script>
 
 <script src="https://cdn.bootcss.com/echarts/4.4.0-rc.1/echarts.min.js"></script>
 
