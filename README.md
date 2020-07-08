@@ -179,19 +179,14 @@ axios.interceptors.request.use(config => {
 - axios => 发送请求
 - echarts => 图表
 - element-ui => element ui组件
-- lodash => js工具库,该项目用到深拷贝与对象合并
-- moment => 时间处理工具库
 - nprogress => 进度条库
-- v-viewer => 图片预览工具库
 - vue-quill-editor => 富文本编辑器
 - vue-table-with-tree-grid => 树形菜单/表格
 
-2. 开发依赖
+1. 开发依赖
 
 - babel => es6+语法转换
-- eslint/babel-eslint => 语法检查
 - less/less-loader => less语法
-- babel-plugin-transform-remove-console => 移除console插件
 
 ### 项目优化
 
@@ -206,33 +201,6 @@ axios.interceptors.request.use(config => {
 
   > 通过vue-cli 3.0工具生成的项目,默认隐藏了所有webpack的配置项,目的是为了屏蔽项目的配置过程,让开发人员把工作的   重心,放在具体功能和业务逻辑的实现上
 
-- 为开发模式与发布模式指定不同的打包入口
-
-  > 默认情况下,vue项目的开发与发布模式,共用同一个打包的入口文件(即src/main.js),为了将项目的开发过程与发布过程分离,可以为两种模式,各自指定打包的入口文件,即:
-  >
-  > 1. 开发模式入口文件 src/main-dev.js
-  > 2. 发布模式入口文件 src/main-prod.js
-  >
-  > 方案：configureWebpack(通过链式编程形式)和chainWebpack(通过操作对象形式)
-  >
-  > 在vue.config.js导出的配置文件中,新增configureWebpack或chainWebpack节点,来自定义webpack的打包配置
-
-  ```js
-  // 代码示例
-  module.exports = {
-      chainWebpack: config => {
-          // 发布模式
-          config.when(process.env.NODE_ENV === 'production', config => {
-              config.entry('app').clear().add('./src/main-prod.js')
-          })
-          // 开发模式
-          config.when(process.env.NODE_ENV === 'development', config => {
-              config.entry('app').clear().add('./src/main-dev.js')
-          })
-      }
-  }
-  ```
-
 - 第三方库启用CDN
 
   - 通过externals加载外部cdn资源
@@ -245,24 +213,18 @@ axios.interceptors.request.use(config => {
 
   ```js
   module.exports = {
-      chainWebpack: config => {
-          config.when(process.env.NODE_ENV === 'production', config => {
-              config.entry('app').clear().add('./src/main-prod.js')
-              // 在vue.config.js如下配置
-              config.set('externals', {
-                  vue: 'Vue',
-                  'vue-router': 'VueRouter',
-                  axios: 'axios',
-                  lodash: '_',
-                  echarts: 'echarts',
-                  nporgress: 'NProgress',
-                  'vue-quill-editor': 'VueQuillEditor'
-              })
-          })
-          config.when(process.env.NODE_ENV === 'development', config => {
-              config.entry('app').clear().add('./src/main-dev.js')
-          })
-      }
+    chainWebpack: config => {
+      // 在vue.config.js如下配置
+      config.set('externals', {
+        vue: 'Vue',
+        'vue-router': 'VueRouter',
+        axios: 'axios',
+        lodash: '_',
+        echarts: 'echarts',
+        nporgress: 'NProgress',
+        'vue-quill-editor': 'VueQuillEditor'
+      })
+    }
   }
   ```
 
@@ -270,7 +232,6 @@ axios.interceptors.request.use(config => {
 
   > 在public/index.html文件头部,将main-prod中的已经进行配置的import(<code>样式表</code>)删除替换为cdn引入
 ```css
-<link href="https://cdn.bootcss.com/viewerjs/1.3.7/viewer.min.css" rel="stylesheet">
 
 <link href="https://cdn.bootcss.com/quill/2.0.0-dev.3/quill.bubble.min.css" rel="stylesheet">
 
@@ -282,13 +243,13 @@ axios.interceptors.request.use(config => {
 
 <link href="https://cdn.bootcss.com/element-ui/2.12.0/theme-chalk/index.css" rel="stylesheet">
 ```
-  3. 步骤3
+  1. 步骤3
 
   > 在public/index.html文件头部,将main-prod中的已经进行配置的import(<code>js文件</code>)删除替换为cdn引入
-```css
- <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
- 
- <script src="https://cdn.bootcss.com/vue-router/3.1.3/vue-router.min.js"></script>
+```js
+<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+
+<script src="https://cdn.bootcss.com/vue-router/3.1.3/vue-router.min.js"></script>
 
 <script src="https://cdn.bootcss.com/axios/0.19.0/axios.min.js"></script>
 
@@ -301,12 +262,8 @@ axios.interceptors.request.use(config => {
 <script src="https://cdn.bootcss.com/quill/2.0.0-dev.3/quill.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/vue-quill-editor@3.0.4/dist/vue-quill-editor.js"></script>
-
-<script src="https://cdn.bootcss.com/viewerjs/1.3.7/viewer.min.js"></script>
-
-<script src="https://cdn.bootcss.com/moment.js/2.24.0/moment.min.js"></script>
 ```
-  4. cdn加速前后对比( **chunk-vendors**打包文件)
+  1. cdn加速前后对比( **chunk-vendors**打包文件)
 
   > Parsed大小 2.6m=> **596.9kB**
 
@@ -317,32 +274,10 @@ axios.interceptors.request.use(config => {
     > 1. 在main-prod.js中,注释掉element-ui按需加载的代码
     > 2. 在index.html头部区域中,通过cdn加载element-ui的js和css样式
     >
-    >	        `<link href="https://cdn.bootcss.com/element-ui/2.12.0/theme-chalk/index.css" rel="stylesheet">`
+    >	        `<link href="https://cdn.bootcdn.net/ajax/libs/element-ui/2.13.2/theme-chalk/index.css" rel="stylesheet">`
     >    
-    > 	        `<script src="https://cdn.bootcss.com/element-ui/2.12.0/index.js"></script>`
+    > 	        `<script src="https://cdn.bootcdn.net/ajax/libs/element-ui/2.13.2/index.js"></script>`
 
-- 首页内容定制
-
-  > 不同打包环境下,首页内容可能会有所不同,通过插件方式定制
-
-  - vue.config.js配置
-
-  ```js
-  config.plugin('html').tap(args => {
-      args[0].isProd = true或false
-      return args
-  })
-  ```
-
-  - index.html修改
-
-  ```html
-  <!-- 开发模式:使用import,发布模式:使用cdn -->
-  <title><%= htmlWebpackPlugin.options.isProd ? '' : 'dev-' %>vue-mall</title>
-  <% if(htmlWebpackPlugin.options.isProd) { %>
-      css | js放在这儿
-  <% } %>
-  ```
 
 - Element-UI组件按需加载
 
@@ -406,14 +341,6 @@ const compression = require('compression')
 app.use(compression())
 ```
 
-#### 配置https服务
-
-##### 为什么要启用https服务
-
-- 传统的http协议传输的数据都是明文,不安全
-- 采用https协议对传输的数据进行了加密处理,可以防止数据被中间人窃取,使用更安全
-
-申请ssl证书(https://freessl.org) => 正常企业还是使用收费ssh(http协议默认运行在80端口,https默认运行在443端口)
 
 #### 使用pm2管理应用
 

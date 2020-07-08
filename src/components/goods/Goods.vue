@@ -35,8 +35,6 @@
         <el-table-column prop="goods_weight" label="重量" :width="label_width1"></el-table-column>
         <el-table-column v-slot="scope" label="创建时间" :width="label_width2">{{scope.row.add_time | timeHandler}}</el-table-column>
         <el-table-column v-slot="scope" label="操作" :width="label_width2">
-          <!-- 修改 -->
-          <goods-edit :goods-id="scope.row.goods_id"></goods-edit>
           <!-- 删除 -->
           <el-button type="danger" icon="el-icon-delete" size="mini" @click="removeGood(scope.row.goods_id)"></el-button>
         </el-table-column>
@@ -57,7 +55,6 @@
 
 <script>
 import { request } from '@/network/request'
-const GoodsEdit = () => import('./subComponents/GoodsEdit')
 
 export default {
   name: 'Goods',
@@ -133,9 +130,6 @@ export default {
   },
   created() {
     this.getGoodsList()
-  },
-  components: {
-    GoodsEdit
   }
 }
 </script>

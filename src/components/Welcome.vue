@@ -1,6 +1,7 @@
 <template>
   <div class="welcome_container">
-    Welcome
+    <h2>欢迎大家访问我的个人博客</h2>
+    <p><a href="http://www.whbhorse.cn/">http://www.whbhorse.cn</a></p>
   </div>
 </template>
 
